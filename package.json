@@ -1,0 +1,58 @@
+{
+  "name": "featly",
+  "version": "1.0.0",
+  "description": "Minimalistic sync & async feature toggle",
+  "main": "lib/featly.js",
+  "jsnext:main": "lib/featly.es.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rimraf lib coverage",
+    "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
+    "lint": "eslint src test",
+    "build": "npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build:es": "rollup --output=lib/featly.es.js -- src/featly.js",
+    "build:umd": "npm run build:umd:rollup && npm run build:umd:babel",
+    "build:umd:min": "uglifyjs lib/featly.js -cm > lib/featly.min.js",
+    "build:umd:rollup": "rollup --format=umd -n featly --output=lib/featly.js -- src/featly.js",
+    "build:umd:babel": "cross-env BABEL_ENV=commonjs babel lib/featly.js -o lib/featly.js",
+    "test:watch": "npm test -- --watch",
+    "test:cov": "cross-env BABEL_ENV=commonjs babel-node $(npm bin)/isparta cover $(npm bin)/_mocha -- --recursive",
+    "check": "npm run lint && npm test",
+    "prepublish": "npm run clean && npm run check && npm run build && check-es3-syntax lib/featly.js lib/featly.min.js --kill"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wadim/featly.git"
+  },
+  "keywords": [
+    "feature",
+    "toggle",
+    "sync",
+    "async"
+  ],
+  "author": "Wadim Grasza <wadim.grasza@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wadim/featly/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.8.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.10.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
+    "babel-register": "^6.9.0",
+    "check-es3-syntax-cli": "^0.1.0",
+    "cross-env": "^1.0.8",
+    "eslint": "^2.12.0",
+    "expect": "^1.20.1",
+    "isparta": "^4.0.0",
+    "mocha": "^2.5.3",
+    "rimraf": "^2.5.2",
+    "rollup": "^0.31.2",
+    "uglifyjs": "^2.4.10"
+  },
+  "dependencies": {}
+}
