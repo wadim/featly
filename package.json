@@ -1,6 +1,6 @@
 {
   "name": "featly",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Minimalistic sync & async feature toggle",
   "main": "lib/featly.js",
   "jsnext:main": "lib/featly.es.js",
