@@ -5,7 +5,8 @@
   "main": "lib/featly.js",
   "jsnext:main": "lib/featly.es.js",
   "files": [
-    "lib"
+    "lib",
+    "README.md"
   ],
   "scripts": {
     "clean": "rimraf lib coverage",
