@@ -1,5 +1,7 @@
 # featly
 
+[![Build Status](https://travis-ci.org/wadim/featly.svg?branch=master)](https://travis-ci.org/wadim/featly)
+
 Minimalistic sync & async feature toggle.
 
 ## Design goals
